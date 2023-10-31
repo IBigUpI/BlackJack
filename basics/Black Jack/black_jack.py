@@ -1,8 +1,8 @@
-import cards
 import bj_players
 import calculations
 
-print("Wellcome to Black Jack! \nOne game is 200 points, if you win you get 2X of the game cost")
+print("Wellcome to Black Jack! \nOne game is 200 points, if you win you get 200 if you hit BlackJack"
+      "you get 2x the amount of the game cost")
 
 playing = True
 
@@ -13,6 +13,7 @@ def player_communication():
     print(f"\nThe Dealers card is:{bj_players.Players.dealer['cards'][0]} and HIDDEN\n")
 
     for player_id in bj_players.Players.players:
+        calculations.remove_points_for_start(player_id=player_id)
         # Communicates to the Players how many points they have
         print(f"{bj_players.Players.players[player_id]['player_name']}, at the moment you have "
               f"{bj_players.Players.players[player_id]['player_points']} points")
@@ -30,4 +31,5 @@ def player_communication():
 while playing:
     bj_players.get_players()
     calculations.assign_cards()
+    calculations.check_points()
     player_communication()

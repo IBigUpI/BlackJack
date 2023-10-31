@@ -16,6 +16,9 @@ def create_player(player_id, name, points, cards, card_value, ):
                                       player_points=points,
                                       player_cards=[cards],
                                       player_card_value=card_value,
+                                      min_points=True,
+                                      winning_status='',
+                                      draw=False
                                       )
 
 
