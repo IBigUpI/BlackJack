@@ -43,13 +43,7 @@ def remove_points_for_start(player_id):
 def calculate_winner(player_id):
     player_value = bj_players.Players.players[player_id]['player_card_value']
     dealer_value = bj_players.Players.dealer['card_points']
-    if dealer_value < 17:
-        bj_players.Players.dealer['cards'] += cards.get_random_card()
-        for card in bj_players.Players.dealer['cards']:
-            bj_players.Players.dealer['card_points'] += (cards.get_card_value(card))
-            dealer_value = bj_players.Players.dealer['card_points']
-            if dealer_value > 21:
-                bj_players.Players.players['winning_status'] = True
+
     if player_value > 21:
         bj_players.Players.players['winning_status'] = False
     elif player_value > dealer_value:
@@ -58,3 +52,11 @@ def calculate_winner(player_id):
         bj_players.Players.players['winning_status'] = False
     elif player_value == dealer_value:
         bj_players.Players.players['draw'] = True
+    if dealer_value < 17:
+        bj_players.Players.dealer['cards'] += cards.get_random_card()
+        for card in bj_players.Players.dealer['cards']:
+            bj_players.Players.dealer['card_points'] += (cards.get_card_value(card))
+            dealer_value = bj_players.Players.dealer['card_points']
+            if dealer_value > 21:
+                bj_players.Players.players['winning_status'] = True
+                
